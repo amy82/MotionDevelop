@@ -19,6 +19,7 @@ namespace MotorControlTest.Fthread
         public Socket.SocketXY socketxy;
 
         //
+        public Process.ProcessManager processManager;
         public ThreadManager()
         {
             hybridThreadManager = new HybridThreadManager();
@@ -28,6 +29,8 @@ namespace MotorControlTest.Fthread
             socketxy = new Socket.SocketXY();
             //_liftCtrl = new LiftController();
             syncSocketController = new Socket.SyncSocketController(socketx, socketxy);
+
+            processManager = new Process.ProcessManager();
         }
     }
 }

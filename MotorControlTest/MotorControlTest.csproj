@@ -51,6 +51,7 @@
     <Compile Include="Data\DataSet.cs" />
     <Compile Include="Data\IniFileClass.cs" />
     <Compile Include="Data\StateSet.cs" />
+    <Compile Include="Data\TaskWorkData.cs" />
     <Compile Include="Data\TeachingData.cs" />
     <Compile Include="Data\TeachingInfocs.cs" />
     <Compile Include="Dlg\UnitControl.cs">

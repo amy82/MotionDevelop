@@ -9,6 +9,7 @@ namespace MotorControlTest.Process.Socket
 {
     public class WaitSocket
     {
+        private readonly SynchronizationContext _syncContext;
         private enumStep eStep;
         private int nRetStep = 0;
         private int m_nStartStep = 0;
@@ -77,10 +78,11 @@ namespace MotorControlTest.Process.Socket
                     {
                         break;
                     }
+                    //if(GlobalClass.motionManager.socketMachine.
 
                     if (GlobalClass.threadManager.socketx.IsBusy == false)
                     {
-                        if (GlobalClass.threadManager.hybridThreadManager._socket1.CurrentState == Data.SocketState.Empty)
+                        if (GlobalClass.threadManager.hybridThreadManager._socket1.CurrentState == Data.SocketState.ReqLoad)
                         {
                             setStep((int)enumStep.X_VerifySocket_Move);
                             break;

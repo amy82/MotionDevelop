@@ -25,10 +25,10 @@ namespace MotorControlTest.Process
             homeSocket = new Socket.HomeSocket();
             readySocket = new Socket.ReadySocket();
             waitSocket = new Socket.WaitSocket();
+
             eepromWriteSocket = new Socket.EEpromWriteSocket();
             eepromVerifySocket = new Socket.EEpromVerifySocket();
-
-
+            
             autoRunSocket = new Socket.AutoRunSocket();
         }
     }

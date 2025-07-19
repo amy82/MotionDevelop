@@ -15,7 +15,7 @@ namespace MotorControlTest
 
 
         //Process
-        public static Process.ProcessManager processManager;
+        //public static Process.ProcessManager processManager;
 
 
         //Dlg

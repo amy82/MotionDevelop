@@ -22,7 +22,7 @@ namespace MotorControlTest
             GlobalClass.threadManager = new Fthread.ThreadManager();
             GlobalClass.unitControl = new Dlg.UnitControl();
 
-            GlobalClass.processManager = new Process.ProcessManager();
+            //GlobalClass.processManager = new Process.ProcessManager();
 
             this.Controls.Add(GlobalClass.unitControl);
         }

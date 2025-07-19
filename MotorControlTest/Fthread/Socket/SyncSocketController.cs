@@ -67,13 +67,6 @@ namespace MotorControlTest.Fthread.Socket
                     case Data.CoordinationState.Wait:
                         CurrentStep = GlobalClass.processManager.waitSocket.FlowRun(CurrentStep);
                         break;
-
-                    case Data.CoordinationState.Axis1_Write:
-
-                        break;
-                    case Data.CoordinationState.Axis1_Verify:
-
-                        break;
                 }
             }
             else

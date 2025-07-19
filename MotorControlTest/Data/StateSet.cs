@@ -15,12 +15,18 @@ namespace MotorControlTest.Data
         Pause,
         Stop,
         Wait,
-        Axis1_Write,
-        Axis1_Verify,
-        Axis2_Write,
-        Axis2_Verify,
+        Axis1_Write_Move,
+        Axis1_Write_Move_Check,
+        Axis1_Verify_Move,
+        Axis1_Verify_Move_Check,
+        Axis2_Write_Move,
+        Axis2_Write_Move_Check,
+        Axis2_Verify_Move,
+        Axis2_Verify_Move_Check,
         Alarm
     }
+
+
     public enum SocketState
     {
         Idle = 0,
@@ -33,5 +39,19 @@ namespace MotorControlTest.Data
         Write_Complete,
         Verify_Complete,
         Error
+    }
+
+
+
+    // EEPROM Socket Stage용
+    public enum eSocketState
+    {
+        EMPTY = 0,
+
+        EXIST,                  // Write 전 Module 있음
+        WRITE_END,              // Write 완료
+        VERIFY_END,             // Verify 완료
+
+        itemCount
     }
 }
