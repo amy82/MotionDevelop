@@ -17,7 +17,7 @@ namespace MotorControlTest.Process.Socket
         public int FlowRun(int nStep, int index)                 //  원점(1000 ~ 2000)
         {
             string szLog = "";
-            bool bRtn = false;
+            //bool bRtn = false;
             int nRetStep = nStep;
             switch (nStep)
             {

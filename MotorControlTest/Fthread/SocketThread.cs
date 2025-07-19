@@ -59,12 +59,12 @@ namespace MotorControlTest.Fthread
                         //5.EEprom Write 검사 대기
                         //6.Write 검사 완료 처리
                         this.IsBusy = true;
-                        this.m_nCurrentStep = GlobalClass.processManager.eepromWriteSocket.FlowRun(this.m_nCurrentStep, this.Index);
+                        this.m_nCurrentStep = GlobalClass.threadManager.processManager.eepromWriteSocket.FlowRun(this.m_nCurrentStep, this.Index);
                     }
                     if (this.CurrentState == Data.SocketState.Req_Verify)
                     {
                         this.IsBusy = true;
-                        this.m_nCurrentStep = GlobalClass.processManager.eepromVerifySocket.FlowRun(this.m_nCurrentStep, this.Index);
+                        this.m_nCurrentStep = GlobalClass.threadManager.processManager.eepromVerifySocket.FlowRun(this.m_nCurrentStep, this.Index);
                     }
                 }
                 else
@@ -73,12 +73,12 @@ namespace MotorControlTest.Fthread
                     if (this.CurrentState == Data.SocketState.Req_Write)
                     {
                         this.IsBusy = true;
-                        this.m_nCurrentStep = GlobalClass.processManager.eepromWriteSocket.FlowRun(this.m_nCurrentStep, this.Index);
+                        this.m_nCurrentStep = GlobalClass.threadManager.processManager.eepromWriteSocket.FlowRun(this.m_nCurrentStep, this.Index);
                     }
                     if (this.CurrentState == Data.SocketState.Req_Verify)
                     {
                         this.IsBusy = true;
-                        this.m_nCurrentStep = GlobalClass.processManager.eepromVerifySocket.FlowRun(this.m_nCurrentStep, this.Index);
+                        this.m_nCurrentStep = GlobalClass.threadManager.processManager.eepromVerifySocket.FlowRun(this.m_nCurrentStep, this.Index);
                     }
                 }
             }

@@ -9,7 +9,6 @@ namespace MotorControlTest.Process.Socket
 {
     public class WaitSocket
     {
-        private readonly SynchronizationContext _syncContext;
         private enumStep eStep;
         private int nRetStep = 0;
         private int m_nStartStep = 0;
@@ -57,7 +56,7 @@ namespace MotorControlTest.Process.Socket
         public int FlowRun(int nStep)                 //  원점(1000 ~ 2000)
         {
             string szLog = "";
-            bool bRtn = false;
+            //bool bRtn = false;
 
             nRetStep = nStep;
 

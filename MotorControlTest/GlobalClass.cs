@@ -8,9 +8,8 @@ namespace MotorControlTest
 {
     public class GlobalClass
     {
-        public static Data.DataManager dataManager = new Data.DataManager();
+        public static Data.DataManager dataManager;
         public static Machine.MotionManager motionManager;
-
         public static Fthread.ThreadManager threadManager;
 
 

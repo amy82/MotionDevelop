@@ -18,7 +18,7 @@ namespace MotorControlTest.Fthread
 
 
         // 종료 플래그
-        private volatile bool _isRunning = true;
+        //private volatile bool _isRunning = true;
 
         private readonly System.Timers.Timer _controlTimer;
 
@@ -158,16 +158,16 @@ namespace MotorControlTest.Fthread
                 switch (_currentState)
                 {
                     case Data.CoordinationState.Initializing:
-                        m_nCurrentStep = GlobalClass.processManager.homeSocket.FlowRun(m_nCurrentStep);
+                        m_nCurrentStep = GlobalClass.threadManager.processManager.homeSocket.FlowRun(m_nCurrentStep);
                         break;
 
                     case Data.CoordinationState.OriginDone:
                     case Data.CoordinationState.Standby:
-                        m_nCurrentStep = GlobalClass.processManager.readySocket.FlowRun(m_nCurrentStep);
+                        m_nCurrentStep = GlobalClass.threadManager.processManager.readySocket.FlowRun(m_nCurrentStep);
                         break;
 
                     case Data.CoordinationState.Wait:
-                        m_nCurrentStep = GlobalClass.processManager.waitSocket.FlowRun(m_nCurrentStep);
+                        m_nCurrentStep = GlobalClass.threadManager.processManager.waitSocket.FlowRun(m_nCurrentStep);
                         break;
                 }
             }
@@ -187,8 +187,6 @@ namespace MotorControlTest.Fthread
         // 리소스 정리
         public void Dispose()
         {
-            _isRunning = false;
-
             // 모니터링 스레드 정상 종료 대기
             _controlTimer.Stop();
 

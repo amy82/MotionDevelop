@@ -11,5 +11,11 @@ namespace MotorControlTest.Data
         public string Name { get; set; }
         public double[] Pos { get; set; }
     }
-    
+
+
+    public class TaskWorkPoint
+    {
+        public string Name { get; set; }
+        public int[] State { get; set; }
+    }
 }

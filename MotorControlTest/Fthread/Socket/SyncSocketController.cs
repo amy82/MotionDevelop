@@ -8,8 +8,6 @@ namespace MotorControlTest.Fthread.Socket
 {
     public class SyncSocketController : BaseThread
     {
-        private bool isPaused = false;
-
         public int CurrentStep { get; set; }
         
         private readonly IAxisController socketx;
@@ -56,16 +54,16 @@ namespace MotorControlTest.Fthread.Socket
                 switch (_currentState)
                 {
                     case Data.CoordinationState.Initializing:
-                        CurrentStep = GlobalClass.processManager.homeSocket.FlowRun(CurrentStep);
+                        CurrentStep = GlobalClass.threadManager.processManager.homeSocket.FlowRun(CurrentStep);
                         break;
 
                     case Data.CoordinationState.OriginDone:
                     case Data.CoordinationState.Standby:
-                        CurrentStep = GlobalClass.processManager.readySocket.FlowRun(CurrentStep);
+                        CurrentStep = GlobalClass.threadManager.processManager.readySocket.FlowRun(CurrentStep);
                         break;
 
                     case Data.CoordinationState.Wait:
-                        CurrentStep = GlobalClass.processManager.waitSocket.FlowRun(CurrentStep);
+                        CurrentStep = GlobalClass.threadManager.processManager.waitSocket.FlowRun(CurrentStep);
                         break;
                 }
             }

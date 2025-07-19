@@ -12,17 +12,26 @@ namespace MotorControlTest
 {
     public partial class Form1 : Form
     {
-        public Data.TeachingData teachingData = new Data.TeachingData();
+        
         public Form1()
         {
             InitializeComponent();
 
+            //DATA
+            GlobalClass.dataManager = new Data.DataManager();
 
+            //MOTION
             GlobalClass.motionManager = new Machine.MotionManager();
             GlobalClass.threadManager = new Fthread.ThreadManager();
+
+            //UI
             GlobalClass.unitControl = new Dlg.UnitControl();
 
             //GlobalClass.processManager = new Process.ProcessManager();
+
+
+            GlobalClass.dataManager.teachingData.testLoad();
+            GlobalClass.dataManager.taskWorkData.testLoad();
 
             this.Controls.Add(GlobalClass.unitControl);
         }

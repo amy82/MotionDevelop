@@ -17,21 +17,14 @@ namespace MotorControlTest.Data
 
         public TeachingData()
         {
-            
-
+            TransferTeachingArr = new TeachingPoint[Data.TransferTeachInfo.eteachName.Length];
+            SocketTeachingArr = new TeachingPoint[Data.SocketTeachInfo.eteachName.Length];
+            MagazineTeachingArr = new TeachingPoint[Data.MagazineTeachInfo.eteachName.Length];
         }
         public void testLoad()
         {
-            TransferTeachingArr = new TeachingPoint[Data.TransferTeachInfo.eteachName.Length];
-
             TeachingLoad(GlobalClass.motionManager.transferMachine.teachingPath, Data.TransferTeachInfo.eteachName, TransferTeachingArr, GlobalClass.motionManager.transferMachine.MotorCnt);
-            //
-            //
-            SocketTeachingArr = new TeachingPoint[Data.SocketTeachInfo.eteachName.Length];
             TeachingLoad(GlobalClass.motionManager.socketMachine.teachingPath, Data.SocketTeachInfo.eteachName, SocketTeachingArr, GlobalClass.motionManager.socketMachine.MotorCnt);
-            //
-            //
-            MagazineTeachingArr = new TeachingPoint[Data.MagazineTeachInfo.eteachName.Length];
             TeachingLoad(GlobalClass.motionManager.magazineMachine.teachingPath, Data.MagazineTeachInfo.eteachName, MagazineTeachingArr, GlobalClass.motionManager.magazineMachine.MotorCnt);
         }
         public bool TeachingLoad(string filename, string[] keyArr, TeachingPoint[] TPoint, int axisCount)
@@ -43,7 +36,7 @@ namespace MotorControlTest.Data
                 string iniPath = System.IO.Path.Combine(Application.StartupPath, filename);
                 GlobalClass.dataManager.inifile.Path = iniPath;
 
-                string defaultValue = GetDefaultValue(axisCount);
+                string defaultValue = DataManager.GetDefaultValue(axisCount, 1);
 
                 for (i = 0; i < keyArr.Length; i++)
                 {
@@ -138,17 +131,7 @@ namespace MotorControlTest.Data
             ini.Write("Teaching_RIGHT_TRAY_BCR_POS", "Pos", string.Join(",", new[] { "100.001", "200", "50" }));
             return true;
         }
-        private string GetDefaultValue(int axisCount)
-        {
-            if (axisCount <= 0) return "";
-
-            string[] zeros = new string[axisCount];
-            for (int i = 0; i < axisCount; i++)
-            {
-                zeros[i] = "0.0";
-            }
-            return string.Join(",", zeros);
-        }
+        
 
         public bool ___Load(string filename)
         {
@@ -161,7 +144,7 @@ namespace MotorControlTest.Data
 
 
             int axisCount = 3;
-            string defaultValue = GetDefaultValue(axisCount);
+            string defaultValue = DataManager.GetDefaultValue(axisCount, 1);
 
             double[] speed = new double[axisCount];
             string[] posTokens = GlobalClass.dataManager.inifile.Read("Motion", "Speed", "0,0,0").Split(',');
