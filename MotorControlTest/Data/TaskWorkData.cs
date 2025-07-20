@@ -10,40 +10,38 @@ namespace MotorControlTest.Data
     public class TaskWorkData
     {
 
-
-        public TaskWorkPoint LeftSocketTaskWorkArr;
-        public TaskWorkPoint RightSocketTaskWorkArr;
-
+        public TaskWorkPoint LeftSocketTaskWork;
+        public TaskWorkPoint RightSocketTaskWork;
 
         public TaskWorkData()
         {
             int i = 0;
-            LeftSocketTaskWorkArr = new TaskWorkPoint();
-            RightSocketTaskWorkArr = new TaskWorkPoint();
-            LeftSocketTaskWorkArr.Name = "LEFT_SOCKET_STATE";
-            RightSocketTaskWorkArr.Name = "RIGHT_SOCKET_STATE";
+            LeftSocketTaskWork = new TaskWorkPoint();
+            RightSocketTaskWork = new TaskWorkPoint();
+            LeftSocketTaskWork.Name = "LEFT_SOCKET_STATE";
+            RightSocketTaskWork.Name = "RIGHT_SOCKET_STATE";
 
-            LeftSocketTaskWorkArr.State = new int[Machine.SocketMachine.socketCount];
-            RightSocketTaskWorkArr.State = new int[Machine.SocketMachine.socketCount];
+            LeftSocketTaskWork.State = new int[Machine.SocketMachine.socketCount];
+            RightSocketTaskWork.State = new int[Machine.SocketMachine.socketCount];
 
-            for (i = 0; i < LeftSocketTaskWorkArr.State.Length; i++)
+            for (i = 0; i < LeftSocketTaskWork.State.Length; i++)
             {
-                LeftSocketTaskWorkArr.State[i] = 0;
+                LeftSocketTaskWork.State[i] = 0;
             }
-            for (i = 0; i < RightSocketTaskWorkArr.State.Length; i++)
+            for (i = 0; i < RightSocketTaskWork.State.Length; i++)
             {
-                RightSocketTaskWorkArr.State[i] = 0;
+                RightSocketTaskWork.State[i] = 0;
             }
         }
         public void testSave()
         {
-            Save(GlobalClass.motionManager.socketMachine.taskWorkPath, LeftSocketTaskWorkArr);
-            Save(GlobalClass.motionManager.socketMachine.taskWorkPath, RightSocketTaskWorkArr);
+            Save(GlobalClass.motionManager.socketMachine.taskWorkPath, LeftSocketTaskWork);
+            Save(GlobalClass.motionManager.socketMachine.taskWorkPath, RightSocketTaskWork);
         }
         public void testLoad()
         {
-            Load(GlobalClass.motionManager.socketMachine.taskWorkPath, ref LeftSocketTaskWorkArr);
-            Load(GlobalClass.motionManager.socketMachine.taskWorkPath, ref RightSocketTaskWorkArr);
+            Load(GlobalClass.motionManager.socketMachine.taskWorkPath, ref LeftSocketTaskWork);
+            Load(GlobalClass.motionManager.socketMachine.taskWorkPath, ref RightSocketTaskWork);
         }
         public bool Load(string filename, ref TaskWorkPoint TPoint)
         {
@@ -100,12 +98,11 @@ namespace MotorControlTest.Data
                 string iniPath = System.IO.Path.Combine(Application.StartupPath, filename);
                 GlobalClass.dataManager.inifile.Path = iniPath;
 
-                //for (i = 0; i < TPoint.Length; i++)
-                //{
-                //    string section = TPoint[i].Name;
-
-                //    GlobalClass.dataManager.inifile.Write(section, "State", string.Join(",", TPoint[i].State));
-                //}
+                string section = TPoint.Name;
+                for (i = 0; i < TPoint.State.Length; i++)
+                {
+                    GlobalClass.dataManager.inifile.Write(section, "State", string.Join(",", TPoint.State));
+                }
             }
             catch (Exception ex)
             {

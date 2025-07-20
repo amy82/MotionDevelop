@@ -27,7 +27,7 @@ namespace MotorControlTest
             //UI
             GlobalClass.unitControl = new Dlg.UnitControl();
 
-            //GlobalClass.processManager = new Process.ProcessManager();
+
 
 
             GlobalClass.dataManager.teachingData.testLoad();
