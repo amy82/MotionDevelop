@@ -72,14 +72,13 @@ namespace MotorControlTest.Process.Socket
                     szLog = $"[Wait] Step - {eStep}";
                     Console.WriteLine(szLog);
 
-                    if (GlobalClass.threadManager.socketx.IsBusy == true &&
-                        GlobalClass.threadManager.socketxy.IsBusy == true)
+                    if (GlobalClass.threadManager.socketx.IsTesting == true && GlobalClass.threadManager.socketxy.IsTesting == true)
                     {
                         break;
                     }
                     //if(GlobalClass.motionManager.socketMachine.
 
-                    if (GlobalClass.threadManager.socketx.IsBusy == false)
+                    if (GlobalClass.threadManager.socketx.IsTesting == false)
                     {
                         if (GlobalClass.threadManager.hybridThreadManager._socket1.CurrentState == Data.SocketState.ReqLoad)
                         {
@@ -92,7 +91,7 @@ namespace MotorControlTest.Process.Socket
                             break;
                         }
                     }
-                    if (GlobalClass.threadManager.socketxy.IsBusy == false)
+                    if (GlobalClass.threadManager.socketxy.IsTesting == false)
                     {
                         if (GlobalClass.threadManager.hybridThreadManager._socket2.CurrentState == Data.SocketState.Ready)
                         {

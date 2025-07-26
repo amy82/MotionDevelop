@@ -39,6 +39,7 @@ namespace MotorControlTest.Data
         TestOk1,            // EEPROM 설비의 Write OK 상태
         //itemCount
     }
+
     //public MODULE_INFO[][] moduleInfo;
     public class MODULE_INFO
     {

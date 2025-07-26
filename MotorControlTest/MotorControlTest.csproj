@@ -75,10 +75,11 @@
     <Compile Include="Fthread\Socket\SyncSocketController.cs" />
     <Compile Include="Fthread\ThreadManager.cs" />
     <Compile Include="GlobalClass.cs" />
-    <Compile Include="Machine\MagazineMachine.cs" />
-    <Compile Include="Machine\MotionManager.cs" />
-    <Compile Include="Machine\SocketMachine.cs" />
-    <Compile Include="Machine\TransferMachine.cs" />
+    <Compile Include="UnitControl\Unit\LiftUnit.cs" />
+    <Compile Include="UnitControl\Unit\MagazineUnit.cs" />
+    <Compile Include="UnitControl\MotionManager.cs" />
+    <Compile Include="UnitControl\Unit\SocketUnit.cs" />
+    <Compile Include="UnitControl\Unit\TransferUnit.cs" />
     <Compile Include="Fthread\IAxisController.cs" />
     <Compile Include="Process\ProcessManager.cs" />
     <Compile Include="Process\Socket\AutoRunSocket.cs" />

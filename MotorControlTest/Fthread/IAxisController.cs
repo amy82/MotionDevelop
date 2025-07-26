@@ -8,7 +8,7 @@ namespace MotorControlTest.Fthread
 {
     public interface IAxisController
     {
-        bool IsBusy { get; set; }
+        bool IsTesting { get; set; }
         Data.SocketState CurrentState { get; set; }
         int ExecuteHomeStep(int currentStep);
         int ExecuteReadyStep(int currentStep);

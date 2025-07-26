@@ -21,7 +21,7 @@ namespace MotorControlTest
             GlobalClass.dataManager = new Data.DataManager();
 
             //MOTION
-            GlobalClass.motionManager = new Machine.MotionManager();
+            GlobalClass.motionManager = new UnitControl.MotionManager();
             GlobalClass.threadManager = new Fthread.ThreadManager();
 
             //UI

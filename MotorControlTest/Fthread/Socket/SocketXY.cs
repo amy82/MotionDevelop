@@ -8,7 +8,7 @@ namespace MotorControlTest.Fthread.Socket
 {
     public class SocketXY : BaseThread, IAxisController
     {
-        public bool IsBusy { get; set; }
+        public bool IsTesting { get; set; }
         public Data.SocketState CurrentState { get; set; }
 
         public SocketXY()

@@ -21,8 +21,8 @@ namespace MotorControlTest.Data
             LeftSocketTaskWork.Name = "LEFT_SOCKET_STATE";
             RightSocketTaskWork.Name = "RIGHT_SOCKET_STATE";
 
-            LeftSocketTaskWork.State = new int[Machine.SocketMachine.socketCount];
-            RightSocketTaskWork.State = new int[Machine.SocketMachine.socketCount];
+            LeftSocketTaskWork.State = new int[UnitControl.SocketUnit.socketCount];
+            RightSocketTaskWork.State = new int[UnitControl.SocketUnit.socketCount];
 
             for (i = 0; i < LeftSocketTaskWork.State.Length; i++)
             {
@@ -35,13 +35,13 @@ namespace MotorControlTest.Data
         }
         public void testSave()
         {
-            Save(GlobalClass.motionManager.socketMachine.taskWorkPath, LeftSocketTaskWork);
-            Save(GlobalClass.motionManager.socketMachine.taskWorkPath, RightSocketTaskWork);
+            Save(GlobalClass.motionManager.socketUnit.taskWorkPath, LeftSocketTaskWork);
+            Save(GlobalClass.motionManager.socketUnit.taskWorkPath, RightSocketTaskWork);
         }
         public void testLoad()
         {
-            Load(GlobalClass.motionManager.socketMachine.taskWorkPath, ref LeftSocketTaskWork);
-            Load(GlobalClass.motionManager.socketMachine.taskWorkPath, ref RightSocketTaskWork);
+            Load(GlobalClass.motionManager.socketUnit.taskWorkPath, ref LeftSocketTaskWork);
+            Load(GlobalClass.motionManager.socketUnit.taskWorkPath, ref RightSocketTaskWork);
         }
         public bool Load(string filename, ref TaskWorkPoint TPoint)
         {

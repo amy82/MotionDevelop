@@ -23,9 +23,9 @@ namespace MotorControlTest.Data
         }
         public void testLoad()
         {
-            TeachingLoad(GlobalClass.motionManager.transferMachine.teachingPath, Data.TransferTeachInfo.eteachName, TransferTeachingArr, GlobalClass.motionManager.transferMachine.MotorCnt);
-            TeachingLoad(GlobalClass.motionManager.socketMachine.teachingPath, Data.SocketTeachInfo.eteachName, SocketTeachingArr, GlobalClass.motionManager.socketMachine.MotorCnt);
-            TeachingLoad(GlobalClass.motionManager.magazineMachine.teachingPath, Data.MagazineTeachInfo.eteachName, MagazineTeachingArr, GlobalClass.motionManager.magazineMachine.MotorCnt);
+            TeachingLoad(GlobalClass.motionManager.transferUnit.teachingPath, Data.TransferTeachInfo.eteachName, TransferTeachingArr, GlobalClass.motionManager.transferUnit.MotorCnt);
+            TeachingLoad(GlobalClass.motionManager.socketUnit.teachingPath, Data.SocketTeachInfo.eteachName, SocketTeachingArr, GlobalClass.motionManager.socketUnit.MotorCnt);
+            TeachingLoad(GlobalClass.motionManager.magazineUnit.teachingPath, Data.MagazineTeachInfo.eteachName, MagazineTeachingArr, GlobalClass.motionManager.magazineUnit.MotorCnt);
         }
         public bool TeachingLoad(string filename, string[] keyArr, TeachingPoint[] TPoint, int axisCount)
         {
@@ -75,9 +75,9 @@ namespace MotorControlTest.Data
         }
         public void testSave()
         {
-            TeachingSave(GlobalClass.motionManager.transferMachine.teachingPath, TransferTeachingArr);
-            TeachingSave(GlobalClass.motionManager.socketMachine.teachingPath, SocketTeachingArr);
-            TeachingSave(GlobalClass.motionManager.magazineMachine.teachingPath, MagazineTeachingArr);
+            TeachingSave(GlobalClass.motionManager.transferUnit.teachingPath, TransferTeachingArr);
+            TeachingSave(GlobalClass.motionManager.socketUnit.teachingPath, SocketTeachingArr);
+            TeachingSave(GlobalClass.motionManager.magazineUnit.teachingPath, MagazineTeachingArr);
         }
 
 

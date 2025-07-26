@@ -12,8 +12,6 @@ namespace MotorControlTest.Data
         Initializing,
         OriginDone,     //원점완료
         Standby,        //운전준비완료
-        Pause,
-        Stop,
         Wait,
         Axis1_Write_Move,
         Axis1_Write_Move_Check,
@@ -23,6 +21,8 @@ namespace MotorControlTest.Data
         Axis2_Write_Move_Check,
         Axis2_Verify_Move,
         Axis2_Verify_Move_Check,
+        Pause,
+        Stop,
         Alarm
     }
 

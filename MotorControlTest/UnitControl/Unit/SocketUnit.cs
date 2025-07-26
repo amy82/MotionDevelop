@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MotorControlTest.Machine
+namespace MotorControlTest.UnitControl
 {
-    public class SocketMachine
+    public class SocketUnit
     {
         public int MotorCnt { get; private set; } = 2;
 
@@ -17,7 +17,7 @@ namespace MotorControlTest.Machine
         public string taskWorkPath = "SocketTaskWork.ini";
 
         public const int socketCount = 4;
-        public SocketMachine()
+        public SocketUnit()
         {
             int i = 0;
             
