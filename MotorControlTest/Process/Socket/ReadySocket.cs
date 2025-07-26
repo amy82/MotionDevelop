@@ -42,7 +42,7 @@ namespace MotorControlTest.Process.Socket
                     nRetStep = 0;
                     //MessageBox.Show("Info", "운전준비 완료");
 
-                    GlobalClass.threadManager.syncSocketController._currentState = Data.CoordinationState.Standby;
+                    GlobalClass.threadManager.syncSocketController._currentState = Process.CoordinationState.Standby;
                     break;
                 default:
                     //[ORIGIN] STEP ERR

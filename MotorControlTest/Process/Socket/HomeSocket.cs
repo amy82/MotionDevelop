@@ -41,7 +41,7 @@ namespace MotorControlTest.Process.Socket
                     Console.WriteLine($"[HomeSocket] Step - {nStep}");
                     nRetStep = 0;
                     //MessageBox.Show("Info", "원점완료");//, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                    GlobalClass.threadManager.syncSocketController._currentState = Data.CoordinationState.OriginDone;
+                    GlobalClass.threadManager.syncSocketController._currentState = Process.CoordinationState.OriginDone;
                     break;
                 default:
                     //[ORIGIN] STEP ERR

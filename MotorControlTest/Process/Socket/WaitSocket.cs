@@ -80,12 +80,12 @@ namespace MotorControlTest.Process.Socket
 
                     if (GlobalClass.threadManager.socketx.IsTesting == false)
                     {
-                        if (GlobalClass.threadManager.hybridThreadManager._socket1.CurrentState == Data.SocketState.ReqLoad)
+                        if (GlobalClass.threadManager.hybridThreadManager._socket1.CurrentState == Process.SocketState.ReqLoad)
                         {
                             setStep((int)enumStep.X_VerifySocket_Move);
                             break;
                         }
-                        else if (GlobalClass.threadManager.hybridThreadManager._socket1.CurrentState == Data.SocketState.Write_Complete)
+                        else if (GlobalClass.threadManager.hybridThreadManager._socket1.CurrentState == Process.SocketState.Write_Complete)
                         {
                             setStep((int)enumStep.X_VerifySocket_Move);
                             break;
@@ -93,12 +93,12 @@ namespace MotorControlTest.Process.Socket
                     }
                     if (GlobalClass.threadManager.socketxy.IsTesting == false)
                     {
-                        if (GlobalClass.threadManager.hybridThreadManager._socket2.CurrentState == Data.SocketState.Ready)
+                        if (GlobalClass.threadManager.hybridThreadManager._socket2.CurrentState == Process.SocketState.Ready)
                         {
                             setStep((int)enumStep.Xy_WriteSocket_Move);
                             break;
                         }
-                        else if (GlobalClass.threadManager.hybridThreadManager._socket2.CurrentState == Data.SocketState.Write_Complete)
+                        else if (GlobalClass.threadManager.hybridThreadManager._socket2.CurrentState == Process.SocketState.Write_Complete)
                         {
                             setStep((int)enumStep.Xy_VerifySocket_Move);
                             break;
@@ -112,7 +112,7 @@ namespace MotorControlTest.Process.Socket
                     break;
 
                 case enumStep.X_WriteSocket_Move_Check:
-                    GlobalClass.threadManager.hybridThreadManager._socket1.CurrentState = Data.SocketState.Req_Write;
+                    GlobalClass.threadManager.hybridThreadManager._socket1.CurrentState = Process.SocketState.Req_Write;
                     Console.WriteLine($"[WaitSocket] {socketName[0]} Write Pos Move Complete - {nStep}");   //4
                     setStep((int)enumStep.End);
                     break;
@@ -123,7 +123,7 @@ namespace MotorControlTest.Process.Socket
                     break;
 
                 case enumStep.X_VerifySocket_Move_Check:
-                    GlobalClass.threadManager.hybridThreadManager._socket1.CurrentState = Data.SocketState.Req_Verify;
+                    GlobalClass.threadManager.hybridThreadManager._socket1.CurrentState = Process.SocketState.Req_Verify;
                     Console.WriteLine($"[WaitSocket] {socketName[0]} Verify Pos Move Complete - {nStep}");
                     setStep((int)enumStep.End);
                     break;
@@ -134,7 +134,7 @@ namespace MotorControlTest.Process.Socket
                     break;
 
                 case enumStep.Xy_WriteSocket_Move_Check:
-                    GlobalClass.threadManager.hybridThreadManager._socket2.CurrentState = Data.SocketState.Req_Write;
+                    GlobalClass.threadManager.hybridThreadManager._socket2.CurrentState = Process.SocketState.Req_Write;
                     Console.WriteLine($"[WaitSocket] {socketName[1]} Write Pos Move Complete - {nStep}");
                     setStep((int)enumStep.End);
                     break;
@@ -145,7 +145,7 @@ namespace MotorControlTest.Process.Socket
                     break;
 
                 case enumStep.Xy_VerifySocket_Move_Check:
-                    GlobalClass.threadManager.hybridThreadManager._socket2.CurrentState = Data.SocketState.Req_Verify;
+                    GlobalClass.threadManager.hybridThreadManager._socket2.CurrentState = Process.SocketState.Req_Verify;
                     Console.WriteLine($"[WaitSocket] {socketName[1]} Verify Pos Move Complete - {nStep}");
                     setStep((int)enumStep.End);
                     break;

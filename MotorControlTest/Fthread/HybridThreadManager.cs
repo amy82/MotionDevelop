@@ -22,7 +22,7 @@ namespace MotorControlTest.Fthread
 
         private readonly System.Timers.Timer _controlTimer;
 
-        public Data.CoordinationState _currentState = Data.CoordinationState.Initializing;
+        public Process.CoordinationState _currentState = Process.CoordinationState.Initializing;
 
         public int m_nCurrentStep = 0;
         private readonly object _stateLock = new object();
@@ -41,7 +41,7 @@ namespace MotorControlTest.Fthread
             _socket2 = new SocketThread(1, RequestStateChange);
         }
         // 상태 변경 요청을 처리하는 메서드
-        private void RequestStateChange(Data.CoordinationState newState, int sourceId)
+        private void RequestStateChange(Process.CoordinationState newState, int sourceId)
         {
             // 스레드 안전한 상태 변경
             lock (_stateLock)
@@ -63,9 +63,9 @@ namespace MotorControlTest.Fthread
                 Console.WriteLine("운전준비 중입니다.");
                 return;
             }
-            if (_currentState != Data.CoordinationState.Initializing)
+            if (_currentState != Process.CoordinationState.Initializing)
             {
-                _currentState = Data.CoordinationState.Standby;
+                _currentState = Process.CoordinationState.Standby;
             }
             m_nCurrentStep = 1000;
 
@@ -75,7 +75,7 @@ namespace MotorControlTest.Fthread
         {
             if (_controlTimer.Enabled == false)     //정지상태
             {
-                if (_currentState != Data.CoordinationState.Standby)
+                if (_currentState != Process.CoordinationState.Standby)
                 {
                     Console.WriteLine("운전준비 상태가 아닙니다..");
                     return;
@@ -83,7 +83,7 @@ namespace MotorControlTest.Fthread
 
                 Console.WriteLine("자동운전 Start");
                 m_nCurrentStep = 1;
-                _currentState = Data.CoordinationState.Wait;
+                _currentState = Process.CoordinationState.Wait;
 
                 _controlTimer.Start();
 
@@ -94,7 +94,7 @@ namespace MotorControlTest.Fthread
             }
             else
             {
-                if (_currentState == Data.CoordinationState.Pause)
+                if (_currentState == Process.CoordinationState.Pause)
                 {
                     //일시 정지 상태
                     Console.WriteLine("일시정지 해제");
@@ -120,14 +120,14 @@ namespace MotorControlTest.Fthread
         }
         public void Stop()
         {
-            _currentState = Data.CoordinationState.Idle;
+            _currentState = Process.CoordinationState.Idle;
             _controlTimer.Stop();
             _socket1.Stop();
             _socket2.Stop();
         }
         public void Pause()
         {
-            _currentState = Data.CoordinationState.Alarm;
+            _currentState = Process.CoordinationState.Alarm;
             _controlTimer.Stop();
             if (_socket1.GetThreadRun() == true)
             {
@@ -157,16 +157,16 @@ namespace MotorControlTest.Fthread
             {
                 switch (_currentState)
                 {
-                    case Data.CoordinationState.Initializing:
+                    case Process.CoordinationState.Initializing:
                         m_nCurrentStep = GlobalClass.threadManager.processManager.homeSocket.FlowRun(m_nCurrentStep);
                         break;
 
-                    case Data.CoordinationState.OriginDone:
-                    case Data.CoordinationState.Standby:
+                    case Process.CoordinationState.OriginDone:
+                    case Process.CoordinationState.Standby:
                         m_nCurrentStep = GlobalClass.threadManager.processManager.readySocket.FlowRun(m_nCurrentStep);
                         break;
 
-                    case Data.CoordinationState.Wait:
+                    case Process.CoordinationState.Wait:
                         m_nCurrentStep = GlobalClass.threadManager.processManager.waitSocket.FlowRun(m_nCurrentStep);
                         break;
                 }

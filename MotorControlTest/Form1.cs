@@ -43,7 +43,7 @@ namespace MotorControlTest
 
         private void btn_Ini_Save_Click(object sender, EventArgs e)
         {
-
+            GlobalClass.dataManager.taskWorkData.testSave();
         }
     }
 }

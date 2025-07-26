@@ -10,7 +10,7 @@ namespace MotorControlTest.UnitControl
     {
         public int MotorCnt { get; private set; } = 2;
 
-        public Data.eSocketState[] socketState;
+        public Process.eSocketState[] socketState;
         public string[] axisName = { "SocketX", "SocketY" };
 
         public string teachingPath = "SocketTeaching.ini";
@@ -21,10 +21,10 @@ namespace MotorControlTest.UnitControl
         {
             int i = 0;
             
-            socketState = new Data.eSocketState[socketCount];
+            socketState = new Process.eSocketState[socketCount];
             for (i = 0; i < socketState.Length; i++)
             {
-                socketState[i] = Data.eSocketState.EMPTY;
+                socketState[i] = Process.eSocketState.EMPTY;
             }
         }
         public bool taskSave()

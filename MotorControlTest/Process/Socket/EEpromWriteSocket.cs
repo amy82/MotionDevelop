@@ -85,11 +85,11 @@ namespace MotorControlTest.Process.Socket
                 case 1900:
                     if (index == 0)
                     {
-                        GlobalClass.threadManager.hybridThreadManager._socket1.CurrentState = Data.SocketState.Write_Complete;
+                        GlobalClass.threadManager.hybridThreadManager._socket1.CurrentState = Process.SocketState.Write_Complete;
                     }
                     else
                     {
-                        GlobalClass.threadManager.hybridThreadManager._socket2.CurrentState = Data.SocketState.Write_Complete;
+                        GlobalClass.threadManager.hybridThreadManager._socket2.CurrentState = Process.SocketState.Write_Complete;
                     }
                     
                     Console.WriteLine($"[EEpromWriteSocket] Step - {nStep}");

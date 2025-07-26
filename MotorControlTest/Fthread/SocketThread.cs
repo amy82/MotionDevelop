@@ -8,7 +8,7 @@ namespace MotorControlTest.Fthread
 {
     public class SocketThread : BaseThread
     {
-        public Data.SocketState CurrentState {get; set;}
+        public Process.SocketState CurrentState {get; set;}
         public int m_nCurrentStep = 0;
         public int m_nStartStep = 0;
         public int m_nEndStep = 0;
@@ -17,13 +17,13 @@ namespace MotorControlTest.Fthread
         public int[] m_nSocketStep = { 0, 0, 0, 0 };
         public int Index;
 
-        private readonly Action<Data.CoordinationState, int> _stateChangeCallback;
-        public SocketThread(int index, Action<Data.CoordinationState, int> stateChangeCallback)
+        private readonly Action<Process.CoordinationState, int> _stateChangeCallback;
+        public SocketThread(int index, Action<Process.CoordinationState, int> stateChangeCallback)
         {
             this.Index = index;
             this._stateChangeCallback = stateChangeCallback;
             this.IsBusy = false;
-            CurrentState = Data.SocketState.Idle;
+            CurrentState = Process.SocketState.Idle;
 
         }
         protected override void ThreadInit()
@@ -50,7 +50,7 @@ namespace MotorControlTest.Fthread
                 if (this.Index == 0)
                 {
                     //X축 소켓
-                    if (this.CurrentState == Data.SocketState.Req_Write)
+                    if (this.CurrentState == Process.SocketState.Req_Write)
                     {
                         //1.컨택 전체 상승 확인
                         //2.x축 Write Pos Move
@@ -61,7 +61,7 @@ namespace MotorControlTest.Fthread
                         this.IsBusy = true;
                         this.m_nCurrentStep = GlobalClass.threadManager.processManager.eepromWriteSocket.FlowRun(this.m_nCurrentStep, this.Index);
                     }
-                    if (this.CurrentState == Data.SocketState.Req_Verify)
+                    if (this.CurrentState == Process.SocketState.Req_Verify)
                     {
                         this.IsBusy = true;
                         this.m_nCurrentStep = GlobalClass.threadManager.processManager.eepromVerifySocket.FlowRun(this.m_nCurrentStep, this.Index);
@@ -70,12 +70,12 @@ namespace MotorControlTest.Fthread
                 else
                 {
                     //X축 + Y실린더 소켓
-                    if (this.CurrentState == Data.SocketState.Req_Write)
+                    if (this.CurrentState == Process.SocketState.Req_Write)
                     {
                         this.IsBusy = true;
                         this.m_nCurrentStep = GlobalClass.threadManager.processManager.eepromWriteSocket.FlowRun(this.m_nCurrentStep, this.Index);
                     }
-                    if (this.CurrentState == Data.SocketState.Req_Verify)
+                    if (this.CurrentState == Process.SocketState.Req_Verify)
                     {
                         this.IsBusy = true;
                         this.m_nCurrentStep = GlobalClass.threadManager.processManager.eepromVerifySocket.FlowRun(this.m_nCurrentStep, this.Index);
@@ -86,13 +86,13 @@ namespace MotorControlTest.Fthread
             {
                 this.IsBusy = false;
                 this.Pause();
-                _stateChangeCallback?.Invoke(Data.CoordinationState.Alarm, this.Index);
+                _stateChangeCallback?.Invoke(Process.CoordinationState.Alarm, this.Index);
                 Console.WriteLine($"socket {this.Index} Process pause");
             }
         }
         public void StartProcess(int startStep, int endStep)
         {
-            if (CurrentState == Data.SocketState.Ready)
+            if (CurrentState == Process.SocketState.Ready)
             {
                 this.m_nStartStep = startStep;
                 this.m_nEndStep = endStep;
@@ -103,9 +103,9 @@ namespace MotorControlTest.Fthread
         public void StopProcess()
         {
             IsBusy = false;
-            this.CurrentState = Data.SocketState.Idle;
+            this.CurrentState = Process.SocketState.Idle;
             this.Stop();
-            CurrentState = Data.SocketState.Idle;
+            CurrentState = Process.SocketState.Idle;
         }
     }
 }

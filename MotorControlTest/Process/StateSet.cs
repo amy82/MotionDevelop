@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MotorControlTest.Data
+namespace MotorControlTest.Process
 {
     public enum CoordinationState
     {

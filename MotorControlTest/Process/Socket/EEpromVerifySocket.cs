@@ -86,11 +86,11 @@ namespace MotorControlTest.Process.Socket
                     Console.WriteLine($"[EEpromVerifySocket] Step - {nStep}");
                     if (index == 0)
                     {
-                        GlobalClass.threadManager.hybridThreadManager._socket1.CurrentState = Data.SocketState.Verify_Complete;
+                        GlobalClass.threadManager.hybridThreadManager._socket1.CurrentState = Process.SocketState.Verify_Complete;
                     }
                     else
                     {
-                        GlobalClass.threadManager.hybridThreadManager._socket2.CurrentState = Data.SocketState.Verify_Complete;
+                        GlobalClass.threadManager.hybridThreadManager._socket2.CurrentState = Process.SocketState.Verify_Complete;
                     }
                     nRetStep = 0;
                     break;

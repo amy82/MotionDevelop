@@ -14,7 +14,7 @@ namespace MotorControlTest.Fthread.Socket
         private readonly IAxisController socketxy;
 
 
-        public Data.CoordinationState _currentState = Data.CoordinationState.Initializing;
+        public Process.CoordinationState _currentState = Process.CoordinationState.Initializing;
         public SyncSocketController(IAxisController _socketx, IAxisController _socketxy)
         {
             this.socketx = _socketx;
@@ -32,9 +32,9 @@ namespace MotorControlTest.Fthread.Socket
 
         public void ReadyStart()
         {
-            if (_currentState != Data.CoordinationState.Initializing)
+            if (_currentState != Process.CoordinationState.Initializing)
             {
-                _currentState = Data.CoordinationState.Standby;
+                _currentState = Process.CoordinationState.Standby;
             }
             CurrentStep = 1000;
 
@@ -53,16 +53,16 @@ namespace MotorControlTest.Fthread.Socket
             {
                 switch (_currentState)
                 {
-                    case Data.CoordinationState.Initializing:
+                    case Process.CoordinationState.Initializing:
                         CurrentStep = GlobalClass.threadManager.processManager.homeSocket.FlowRun(CurrentStep);
                         break;
 
-                    case Data.CoordinationState.OriginDone:
-                    case Data.CoordinationState.Standby:
+                    case Process.CoordinationState.OriginDone:
+                    case Process.CoordinationState.Standby:
                         CurrentStep = GlobalClass.threadManager.processManager.readySocket.FlowRun(CurrentStep);
                         break;
 
-                    case Data.CoordinationState.Wait:
+                    case Process.CoordinationState.Wait:
                         CurrentStep = GlobalClass.threadManager.processManager.waitSocket.FlowRun(CurrentStep);
                         break;
                 }

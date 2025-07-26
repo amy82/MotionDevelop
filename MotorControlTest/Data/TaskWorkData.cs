@@ -18,8 +18,11 @@ namespace MotorControlTest.Data
             int i = 0;
             LeftSocketTaskWork = new TaskWorkPoint();
             RightSocketTaskWork = new TaskWorkPoint();
-            LeftSocketTaskWork.Name = "LEFT_SOCKET_STATE";
-            RightSocketTaskWork.Name = "RIGHT_SOCKET_STATE";
+            LeftSocketTaskWork.Name = "LEFT_SOCKET";
+            RightSocketTaskWork.Name = "RIGHT_SOCKET";
+
+            LeftSocketTaskWork.moduleInfo = new MODULE_INFO[UnitControl.SocketUnit.socketCount];
+            RightSocketTaskWork.moduleInfo = new MODULE_INFO[UnitControl.SocketUnit.socketCount];
 
             LeftSocketTaskWork.State = new int[UnitControl.SocketUnit.socketCount];
             RightSocketTaskWork.State = new int[UnitControl.SocketUnit.socketCount];
@@ -31,6 +34,17 @@ namespace MotorControlTest.Data
             for (i = 0; i < RightSocketTaskWork.State.Length; i++)
             {
                 RightSocketTaskWork.State[i] = 0;
+            }
+
+            for (i = 0; i < LeftSocketTaskWork.moduleInfo.Length; i++)
+            {
+                LeftSocketTaskWork.moduleInfo[i] = new MODULE_INFO();
+                LeftSocketTaskWork.moduleInfo[i].Init();
+            }
+            for (i = 0; i < RightSocketTaskWork.moduleInfo.Length; i++)
+            {
+                RightSocketTaskWork.moduleInfo[i] = new MODULE_INFO();
+                RightSocketTaskWork.moduleInfo[i].Init();
             }
         }
         public void testSave()
@@ -57,11 +71,7 @@ namespace MotorControlTest.Data
                 string name = TPoint.Name;
                 string section = $"{name}";
                 string posStr = GlobalClass.dataManager.inifile.Read(section, "State", defaultValue);
-
-
                 string[] posTokens = posStr.Split(',');
-
-
                 TaskWorkPoint tp = new TaskWorkPoint();
                 tp.Name = name;
                 tp.State = new int[TPoint.State.Length];
@@ -71,7 +81,21 @@ namespace MotorControlTest.Data
                 }
                 ///tp.Pos = (double[])pos.Clone(); //배열 자체를 복사!
 
-                TPoint = tp;
+                //TPoint = tp;
+
+
+
+                for (i = 0; i < TPoint.moduleInfo.Length; i++)
+                {
+                    section = name + "_MODULE" + (i + 1).ToString();
+                    TPoint.moduleInfo[i].LOTID = GlobalClass.dataManager.inifile.Read(section, "LOTID", "EMPTY");
+                    TPoint.moduleInfo[i].MODULEID = GlobalClass.dataManager.inifile.Read(section, "MODULEID", "EMPTY");
+                    TPoint.moduleInfo[i].TRAYID = GlobalClass.dataManager.inifile.Read(section, "TRAYID", "EMPTY");
+                }
+                
+                
+
+                
             }
             catch (Exception ex)
             {
@@ -91,7 +115,10 @@ namespace MotorControlTest.Data
 
             //_stprintf_s(szIniBuff, SIZE_OF_1K, _T("%d / %d"), TransferTask.m_nTransferPickupState[0], TransferTask.m_nTransferPickupState[1]);
             //WritePrivateProfileString(_T("TRANSFER_WORK"), _T("PickerState"), szIniBuff, szPath);
-
+            /*
+             [LEFT_SOCKET_STATE]
+                State=3,4,5,6
+             */
             try
             {
                 int i = 0;
@@ -103,6 +130,16 @@ namespace MotorControlTest.Data
                 {
                     GlobalClass.dataManager.inifile.Write(section, "State", string.Join(",", TPoint.State));
                 }
+                string inSection = string.Empty;
+                for (i = 0; i < TPoint.moduleInfo.Length; i++)
+                {
+                    inSection = section + "_MODULE" + (i + 1).ToString();
+
+                    GlobalClass.dataManager.inifile.Write(inSection, "LOTID", TPoint.moduleInfo[i].LOTID);
+                    GlobalClass.dataManager.inifile.Write(inSection, "MODULEID", TPoint.moduleInfo[i].MODULEID);
+                    GlobalClass.dataManager.inifile.Write(inSection, "TRAYID", TPoint.moduleInfo[i].TRAYID);
+                }
+
             }
             catch (Exception ex)
             {

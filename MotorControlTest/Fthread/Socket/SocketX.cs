@@ -9,11 +9,11 @@ namespace MotorControlTest.Fthread.Socket
     public class SocketX : BaseThread, IAxisController
     {
         public bool IsTesting { get; set; }
-        public Data.SocketState CurrentState { get; set; }
+        public Process.SocketState CurrentState { get; set; }
         public int m_nCurrentStep = 0;
         public SocketX()
         {
-            CurrentState = Data.SocketState.Idle;
+            CurrentState = Process.SocketState.Idle;
         }
         public int ExecuteReadyStep(int currentStep)
         {
@@ -52,7 +52,7 @@ namespace MotorControlTest.Fthread.Socket
         {
             switch (CurrentState)
             {
-                case Data.SocketState.Idle:
+                case Process.SocketState.Idle:
 
                     break;
             }
